@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ProductCard } from "@/components/product-card";
-import { Sparkles } from "lucide-react";
-import { getNewArrivals } from "@/lib/data/products";
+import { Product } from "@/types/types";
 
-export async function NewArrivals() {
-  const products = await getNewArrivals();
+type Props = {
+  products: Product[];
+};
 
+export function FeaturedProductsContent({ products }: Props) {
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -23,13 +24,11 @@ export async function NewArrivals() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <div className="flex items-center justify-center mb-4">
-          <Sparkles className="h-8 w-8 text-primary mr-3" />
-          <h2 className="text-3xl md:text-4xl font-bold">New Arrivals</h2>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          Featured Products
+        </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Fresh styles just landed. Be among the first to discover our latest
-          additions
+          Handpicked favorites that define this season's must-have looks
         </p>
       </motion.div>
 
