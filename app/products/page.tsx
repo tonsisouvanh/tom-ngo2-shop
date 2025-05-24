@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { getAllProducts } from "@/lib/data/products";
+import { ProductFilters } from "@/components/product-filters";
+import { ProductGrid } from "@/components/product-grid";
 
 export const metadata = {
   title: "All Products | StyleHub",
@@ -25,18 +27,20 @@ export default async function ProductsPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[300px] sm:w-[350px]">
-            <div className="py-4">{/* <ProductFilters /> */}</div>
+            <div className="py-4">
+              <ProductFilters />
+            </div>
           </SheetContent>
         </Sheet>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-1/4 hidden md:block">
-          {/* <ProductFilters /> */}
+          <ProductFilters />
         </div>
 
         <div className="w-full md:w-3/4">
-          {/* <ProductGrid products={products} /> */}
+          <ProductGrid products={products} />
         </div>
       </div>
     </div>

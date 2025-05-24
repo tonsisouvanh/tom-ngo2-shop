@@ -66,7 +66,7 @@ export function Header() {
               href="/"
               className="text-xl md:text-2xl font-bold ml-2 md:ml-0"
             >
-              Ngo^2
+              NGO²
             </Link>
           </div>
 
