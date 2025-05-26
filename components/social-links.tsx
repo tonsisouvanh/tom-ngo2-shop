@@ -24,8 +24,8 @@ export function SocialLinks() {
     {
       name: "Facebook",
       icon: <Facebook size={32} />,
-      url: "https://facebook.com/stylehub",
-      username: "@stylehub",
+      url: "https://facebook.com/NGO²",
+      username: "@NGO²",
       color: "bg-blue-600",
       hoverColor: "hover:bg-blue-700",
     },
@@ -49,16 +49,16 @@ export function SocialLinks() {
           <path d="M15 2h-4v10" />
         </svg>
       ),
-      url: "https://tiktok.com/@stylehub",
-      username: "@stylehub",
+      url: "https://tiktok.com/@NGO²",
+      username: "@NGO²",
       color: "bg-black",
       hoverColor: "hover:bg-zinc-800",
     },
     {
       name: "YouTube",
       icon: <Youtube size={32} />,
-      url: "https://youtube.com/@stylehub",
-      username: "@stylehub",
+      url: "https://youtube.com/@NGO²",
+      username: "@NGO²",
       color: "bg-red-600",
       hoverColor: "hover:bg-red-700",
     },

@@ -6,7 +6,7 @@ import { ProductFilters } from "@/components/product-filters";
 import { ProductGrid } from "@/components/product-grid";
 
 export const metadata = {
-  title: "All Products | StyleHub",
+  title: "All Products | NGO²",
   description: "Browse our collection of clothing and accessories.",
 };
 

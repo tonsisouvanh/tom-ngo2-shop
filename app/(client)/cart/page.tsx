@@ -2,7 +2,7 @@ import { CartItems } from "@/components/cart-items";
 import { CartSummary } from "@/components/cart-summary";
 
 export const metadata = {
-  title: "Shopping Cart | StyleHub",
+  title: "Shopping Cart | NGO²",
   description: "View and manage items in your shopping cart.",
 };
 

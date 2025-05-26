@@ -5,10 +5,10 @@ import { FloatingShareButton } from "@/components/floating-share-button";
 import { MerchantContactButton } from "@/components/merchant-contact-button";
 import { getProductById, getRelatedProducts } from "@/lib/data/products";
 
-// export const metadata = {
-//   title: "Product Details | StyleHub",
-//   description: "View detailed product information and add to your cart.",
-// };
+export const metadata = {
+  title: "Product Details | NGO²",
+  description: "View detailed product information and add to your cart.",
+};
 
 export default async function ProductPage() {
   const product = await getProductById("1");
@@ -17,9 +17,9 @@ export default async function ProductPage() {
     notFound();
   }
 
-  // // Update metadata dynamically
-  // metadata.title = `${product.name} | StyleHub`;
-  // metadata.description = product.description.substring(0, 160);
+  // Update metadata dynamically
+  metadata.title = `${product.name} | NGO²`;
+  metadata.description = product.description.substring(0, 160);
 
   const relatedProducts = await getRelatedProducts(product.category);
 

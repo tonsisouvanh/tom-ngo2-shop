@@ -1,7 +1,7 @@
 import { Product } from "@/types/types";
 
 // Mock product data
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: "1",
     name: "Classic Cotton T-Shirt",
@@ -11,10 +11,7 @@ const products: Product[] = [
     category: "men",
     images: [
       "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=3172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
     sizes: ["xs", "s", "m", "l", "xl"],
     colors: ["black", "white", "blue", "green"],

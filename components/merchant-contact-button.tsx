@@ -34,13 +34,10 @@ export function MerchantContactButton({
       // Format the price with discount if applicable
       const priceDisplay =
         product.discount > 0
-          ? `$${product.price.toFixed(2)} (${
-              product.discount
-            }% OFF - Original: $${(
-              product.price /
-              (1 - product.discount / 100)
-            ).toFixed(2)})`
-          : `$${product.price.toFixed(2)}`;
+          ? `$${product.price} (${product.discount}% OFF - Original: $${
+              product.price / (1 - product.discount / 100)
+            })`
+          : `$${product.price}`;
 
       message = `Hello, I'm interested in this product:\n\n*${product.name}*\n\nPrice: ${priceDisplay}\n\nProduct ID: ${product.id}\n\nCan you provide more information?`;
     }

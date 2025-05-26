@@ -15,16 +15,16 @@ export function ProductShareCard({ product, onClose }: ProductShareCardProps) {
   const priceDisplay =
     product.discount > 0 ? (
       <div className="flex items-center gap-2">
-        <span className="font-bold">${product.price.toFixed(2)}</span>
+        <span className="font-bold">${product.price}</span>
         <span className="text-muted-foreground text-sm line-through">
-          ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+          ${product.price / (1 - product.discount / 100)}
         </span>
         <span className="bg-destructive text-destructive-foreground text-xs px-2 py-1 rounded-full">
           {product.discount}% OFF
         </span>
       </div>
     ) : (
-      <span className="font-bold">${product.price.toFixed(2)}</span>
+      <span className="font-bold">${product.price}</span>
     );
 
   return (

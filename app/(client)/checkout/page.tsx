@@ -2,7 +2,7 @@ import { CheckoutForm } from "@/components/checkout-form";
 import { OrderSummary } from "@/components/order-summary";
 
 export const metadata = {
-  title: "Checkout | StyleHub",
+  title: "Checkout | NGO²",
   description: "Complete your order with shipping information.",
 };
 

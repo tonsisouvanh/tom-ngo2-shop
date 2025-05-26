@@ -13,7 +13,7 @@ export function OrderSummary() {
   );
 
   const shipping = subtotal > 50 ? 0 : 5.99;
-  const total = subtotal + shipping;
+  const total = subtotal;
 
   return (
     <Card>
@@ -33,7 +33,7 @@ export function OrderSummary() {
                   {item.quantity}
                 </div>
               </div>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
+              <span>${item.price * item.quantity}</span>
             </div>
           ))}
 
@@ -42,19 +42,19 @@ export function OrderSummary() {
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>{subtotal} LAK</span>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flexd hidden justify-between">
               <span className="text-muted-foreground">Shipping</span>
-              <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? "Free" : `${shipping} LAK`}</span>
             </div>
 
             <Separator />
 
             <div className="flex justify-between font-semibold">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>{total} LAK</span>
             </div>
           </div>
         </div>

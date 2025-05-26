@@ -3,11 +3,9 @@
 import { motion } from "framer-motion";
 import { ProductCard } from "@/components/product-card";
 import { Sparkles } from "lucide-react";
-import { getNewArrivals } from "@/lib/data/products";
+import { getNewArrivals, products } from "@/lib/data/products";
 
-export async function NewArrivals() {
-  const products = await getNewArrivals();
-
+export function NewArrivals() {
   return (
     <motion.section
       initial={{ opacity: 0 }}

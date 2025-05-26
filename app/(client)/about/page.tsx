@@ -4,16 +4,15 @@ import { SocialLinks } from "@/components/social-links";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | StyleHub",
-  description: "Learn more about StyleHub and connect with us on social media.",
+  title: "About Us | NGO²",
+  description: "Learn more about NGO² and connect with us on social media.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
   return (
     <main className="min-h-screen">
       <AboutHero />
       <SocialLinks />
-      {/* <AboutValues /> */}
       <AboutBrands />
     </main>
   );

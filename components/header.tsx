@@ -10,12 +10,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MobileMenu } from "./mobile-menu";
 
-export function Header() {
+const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { cartItems } = useCartStore();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -93,11 +93,7 @@ export function Header() {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <MoonIcon className="h-5 w-5" />
-              )}
+              {theme === "dark" ? <Sun /> : <MoonIcon />}
               <span className="sr-only">Toggle theme</span>
             </Button>
 
@@ -141,4 +137,6 @@ export function Header() {
       />
     </header>
   );
-}
+};
+
+export default Header;

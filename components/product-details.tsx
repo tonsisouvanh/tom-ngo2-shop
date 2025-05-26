@@ -78,20 +78,16 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="flex items-center gap-4">
           {product.discount > 0 ? (
             <>
-              <span className="text-2xl font-bold">
-                ${product.price.toFixed(2)}
-              </span>
+              <span className="text-2xl font-bold">${product.price}</span>
               <span className="text-muted-foreground text-lg line-through">
-                ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+                ${product.price / (1 - product.discount / 100)}
               </span>
               <span className="bg-destructive text-destructive-foreground text-sm px-3 py-1 rounded-full">
                 {product.discount}% OFF
               </span>
             </>
           ) : (
-            <span className="text-2xl font-bold">
-              ${product.price.toFixed(2)}
-            </span>
+            <span className="text-2xl font-bold">${product.price}</span>
           )}
         </div>
 

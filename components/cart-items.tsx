@@ -84,7 +84,7 @@ export function CartItems() {
 
                   <div className="flex items-center gap-3 sm:gap-4 ml-auto">
                     <span className="font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ${item.price * item.quantity}
                     </span>
                     <Button
                       variant="ghost"

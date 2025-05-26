@@ -1,5 +1,5 @@
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
-import { MerchantContactButton } from "@/components/merchant-contact-button"
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MerchantContactButton } from "@/components/merchant-contact-button";
 
 export function ContactInfo() {
   return (
@@ -7,7 +7,8 @@ export function ContactInfo() {
       <div>
         <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
         <p className="text-muted-foreground mb-6">
-          Have questions or feedback? We'd love to hear from you. Reach out through any of these channels.
+          Have questions or feedback? We'd love to hear from you. Reach out
+          through any of these channels.
         </p>
 
         <div className="space-y-4">
@@ -15,7 +16,9 @@ export function ContactInfo() {
             <MapPin className="h-5 w-5 text-primary mr-3 mt-0.5" />
             <div>
               <p className="font-medium">Our Location</p>
-              <p className="text-muted-foreground">123 Fashion Street, Style City, SC 12345</p>
+              <p className="text-muted-foreground">
+                123 Fashion Street, Style City, SC 12345
+              </p>
             </div>
           </div>
 
@@ -31,7 +34,7 @@ export function ContactInfo() {
             <Mail className="h-5 w-5 text-primary mr-3 mt-0.5" />
             <div>
               <p className="font-medium">Email Address</p>
-              <p className="text-muted-foreground">hello@stylehub.com</p>
+              <p className="text-muted-foreground">hello@NGO².com</p>
             </div>
           </div>
 
@@ -39,7 +42,9 @@ export function ContactInfo() {
             <Clock className="h-5 w-5 text-primary mr-3 mt-0.5" />
             <div>
               <p className="font-medium">Business Hours</p>
-              <p className="text-muted-foreground">Monday - Friday: 9am - 6pm</p>
+              <p className="text-muted-foreground">
+                Monday - Friday: 9am - 6pm
+              </p>
               <p className="text-muted-foreground">Saturday: 10am - 4pm</p>
               <p className="text-muted-foreground">Sunday: Closed</p>
             </div>
@@ -49,16 +54,20 @@ export function ContactInfo() {
 
       <div className="pt-4">
         <h3 className="text-lg font-medium mb-3">Connect on WhatsApp</h3>
-        <p className="text-muted-foreground mb-4">For quick responses, reach out to us directly on WhatsApp.</p>
+        <p className="text-muted-foreground mb-4">
+          For quick responses, reach out to us directly on WhatsApp.
+        </p>
         <MerchantContactButton variant="default" className="w-full md:w-auto" />
       </div>
 
       <div className="pt-4">
         <h3 className="text-lg font-medium mb-3">Follow Us</h3>
-        <p className="text-muted-foreground mb-4">Stay updated with our latest collections and promotions.</p>
+        <p className="text-muted-foreground mb-4">
+          Stay updated with our latest collections and promotions.
+        </p>
         <div className="flex space-x-4">
           <a
-            href="https://facebook.com/stylehub"
+            href="https://facebook.com/NGO²"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -78,7 +87,7 @@ export function ContactInfo() {
             </svg>
           </a>
           <a
-            href="https://tiktok.com/@stylehub"
+            href="https://tiktok.com/@NGO²"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full bg-black text-white hover:bg-zinc-800 transition-colors"
@@ -101,7 +110,7 @@ export function ContactInfo() {
             </svg>
           </a>
           <a
-            href="https://youtube.com/@stylehub"
+            href="https://youtube.com/@NGO²"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors"
@@ -124,5 +133,5 @@ export function ContactInfo() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -19,6 +19,6 @@ export function truncateText(text: string, maxLength: number): string {
 
 export function getAbsoluteUrl(path: string): string {
   // In a real app, you'd use environment variables for the domain
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://stylehub.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://NGO².com";
   return `${baseUrl}${path}`;
 }

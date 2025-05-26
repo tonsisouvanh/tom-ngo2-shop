@@ -42,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
         )}
         {product.discount > 0 && (
-          <span className="absolute top-2 right-2 bg-destructive text-destructive-foreground text-xs px-3 py-1 rounded-full">
+          <span className="absolute top-2 hidden right-2 bg-destructive text-destructive-foreground text-xs px-3 py-1 rounded-full">
             {product.discount}% OFF
           </span>
         )}
@@ -61,13 +61,13 @@ export function ProductCard({ product }: ProductCardProps) {
         <div>
           {product.discount > 0 ? (
             <div className="flex flex-col xs:flex-row xs:items-center xs:gap-2">
-              <span className="font-bold">${product.price.toFixed(2)}</span>
-              <span className="text-muted-foreground text-sm line-through">
-                ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+              <span className="font-bold">${product.price}</span>
+              <span className="text-muted-foreground hidden text-sm line-through">
+                ${product.price / (1 - product.discount / 100)}
               </span>
             </div>
           ) : (
-            <span className="font-bold">${product.price.toFixed(2)}</span>
+            <span className="font-bold">${product.price}</span>
           )}
         </div>
 

@@ -22,7 +22,7 @@ export function NewsletterSection() {
     // Simulate API call
     setTimeout(() => {
       //   toast({
-      //     title: "Welcome to StyleHub! 🎉",
+      //     title: "Welcome to NGO²! 🎉",
       //     description:
       //       "You've been subscribed to our newsletter. Check your email for a welcome gift!",
       //   });

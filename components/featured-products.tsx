@@ -1,7 +1,8 @@
 import { getFeaturedProducts } from "@/lib/data/products";
 import { FeaturedProductsContent } from "./featured-products-content";
+import React from "react";
 
-export async function FeaturedProducts() {
+const FeaturedProducts = async () => {
   const products = await getFeaturedProducts();
 
   return (
@@ -9,4 +10,6 @@ export async function FeaturedProducts() {
       <FeaturedProductsContent products={products} />
     </>
   );
-}
+};
+
+export default FeaturedProducts;

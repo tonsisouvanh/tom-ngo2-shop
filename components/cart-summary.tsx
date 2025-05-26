@@ -16,7 +16,7 @@ export function CartSummary() {
   );
 
   const shipping = subtotal > 50 ? 0 : 5.99;
-  const total = subtotal + shipping;
+  const total = subtotal;
 
   return (
     <Card className="border-border/40">
@@ -26,19 +26,19 @@ export function CartSummary() {
         <div className="space-y-4">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>{subtotal} LAK</span>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flexd hidden justify-between">
             <span className="text-muted-foreground">Shipping</span>
-            <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+            <span>{shipping === 0 ? "Free" : `${shipping}`}</span>
           </div>
 
           <Separator className="my-2 bg-border/40" />
 
           <div className="flex justify-between font-semibold text-lg">
             <span>Total</span>
-            <span>${total.toFixed(2)}</span>
+            <span>{total} LAK</span>
           </div>
         </div>
       </CardContent>

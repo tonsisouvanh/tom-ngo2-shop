@@ -36,16 +36,13 @@ export function ShareButton({
     // Format the price with discount if applicable
     const priceDisplay =
       product.discount > 0
-        ? `$${product.price.toFixed(2)} (${
-            product.discount
-          }% OFF - Original: $${(
-            product.price /
-            (1 - product.discount / 100)
-          ).toFixed(2)})`
-        : `$${product.price.toFixed(2)}`;
+        ? `$${product.price} (${product.discount}% OFF - Original: $${
+            product.price / (1 - product.discount / 100)
+          })`
+        : `$${product.price}`;
 
     // Create the message text
-    const message = `Check out this product from StyleHub!\n\n*${product.name}*\n\nPrice: ${priceDisplay}\n\nDescription: ${product.description}\n\nMaterial: ${product.material}\nMade in: ${product.madeIn}\n\nView product: ${productUrl}`;
+    const message = `Check out this product from NGO²!\n\n*${product.name}*\n\nPrice: ${priceDisplay}\n\nDescription: ${product.description}\n\nMaterial: ${product.material}\nMade in: ${product.madeIn}\n\nView product: ${productUrl}`;
 
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);

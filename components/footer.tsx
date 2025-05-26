@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import Link from "next/link";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 export function Footer() {
   return (
@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-3 md:mb-4">StyleHub</h3>
+            <h3 className="text-lg font-semibold mb-3 md:mb-4">NGO²</h3>
             <p className="text-muted-foreground text-sm">
               Discover the latest fashion trends and styles for every occasion.
             </p>
@@ -17,7 +17,10 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-3 md:mb-4">Shop</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/products" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                <Link
+                  href="/products"
+                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                >
                   All Products
                 </Link>
               </li>
@@ -52,22 +55,34 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-3 md:mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                <Link
+                  href="/about"
+                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                <Link
+                  href="/terms"
+                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                >
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                <Link
+                  href="/privacy"
+                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
@@ -77,29 +92,39 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-3 md:mb-4">Connect</h3>
             <div className="flex space-x-4">
-              <Link href="https://facebook.com" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="https://facebook.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="https://instagram.com" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="https://instagram.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="https://twitter.com" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="https://twitter.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
             </div>
             <p className="mt-4 text-muted-foreground text-sm">
-              Subscribe to our newsletter for updates on new arrivals and promotions.
+              Subscribe to our newsletter for updates on new arrivals and
+              promotions.
             </p>
           </div>
         </div>
 
         <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-border/40 text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} StyleHub. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} NGO². All rights reserved.</p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

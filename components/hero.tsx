@@ -136,14 +136,15 @@ export function Hero() {
                         className="rounded-full px-8 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-300"
                       >
                         <Link href={heroSlides[currentSlide].ctaLink}>
-                          {heroSlides[currentSlide].cta}
+                          {/* {heroSlides[currentSlide].cta} */}
+                          Shop Now
                         </Link>
                       </Button>
 
                       <Button
                         variant="outline"
                         size="lg"
-                        className={`rounded-full px-8 py-6 text-lg font-semibold transform hover:scale-105 transition-all duration-300 ${
+                        className={`rounded-full hidden px-8 py-6 text-lg font-semibold transform hover:scale-105 transition-all duration-300 ${
                           heroSlides[currentSlide].theme === "dark"
                             ? "border-white text-white hover:bg-white hover:text-black"
                             : "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"

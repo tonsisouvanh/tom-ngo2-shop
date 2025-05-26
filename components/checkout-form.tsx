@@ -76,7 +76,7 @@ export function CheckoutForm() {
         (item) =>
           `${item.name} (${item.selectedSize}, ${item.selectedColor}) x${
             item.quantity
-          } - $${(item.price * item.quantity).toFixed(2)}`
+          } - $${item.price * item.quantity}`
       )
       .join("%0A");
 

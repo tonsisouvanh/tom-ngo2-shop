@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import {
@@ -29,7 +28,9 @@ export function ProductImageGallery({
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<boolean[]>(() =>
+    Array(images.length).fill(false)
+  ); // Track loading state for each image
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
     null
   );
@@ -68,7 +69,6 @@ export function ProductImageGallery({
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
 
-    // Limit the values to keep the image within bounds
     const boundedX = Math.max(0, Math.min(100, x));
     const boundedY = Math.max(0, Math.min(100, y));
 
@@ -90,7 +90,6 @@ export function ProductImageGallery({
     const x = ((touch.clientX - left) / width) * 100;
     const y = ((touch.clientY - top) / height) * 100;
 
-    // Limit the values to keep the image within bounds
     const boundedX = Math.max(0, Math.min(100, x));
     const boundedY = Math.max(0, Math.min(100, y));
 
@@ -104,13 +103,11 @@ export function ProductImageGallery({
     const deltaX = touch.clientX - touchStart.x;
     const deltaY = touch.clientY - touchStart.y;
 
-    // If it's a small movement, treat it as a tap (for toggling zoom)
     if (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
       if (isFullscreen) {
         toggleZoom();
       }
     } else if (!isZoomed) {
-      // If it's a swipe and not zoomed, navigate between images
       if (deltaX > 50) {
         prevImage();
       } else if (deltaX < -50) {
@@ -155,10 +152,23 @@ export function ProductImageGallery({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen, isZoomed]);
 
-  // // Reset loading state when active image changes
-  // useEffect(() => {
-  //   setIsLoading(true);
-  // }, [activeIndex]);
+  // Preload images to improve performance
+  useEffect(() => {
+    const preloadImages = () => {
+      images.forEach((src, index) => {
+        const img = new window.Image();
+        img.src = src;
+        img.onload = () => {
+          setLoadedImages((prev) => {
+            const newLoaded = [...prev];
+            newLoaded[index] = true;
+            return newLoaded;
+          });
+        };
+      });
+    };
+    preloadImages();
+  }, [images]);
 
   // Prevent body scroll when in fullscreen mode
   useEffect(() => {
@@ -190,7 +200,7 @@ export function ProductImageGallery({
         onClick={isFullscreen && !isMobile ? toggleZoom : undefined}
       >
         {/* Loading indicator */}
-        {isLoading && (
+        {!loadedImages[activeIndex] && (
           <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
           </div>
@@ -216,15 +226,21 @@ export function ProductImageGallery({
             fill
             className={cn(
               "object-contain transition-opacity duration-300",
-              isLoading ? "opacity-0" : "opacity-100"
+              loadedImages[activeIndex] ? "opacity-100" : "opacity-0"
             )}
-            onLoad={() => setIsLoading(false)}
+            onLoad={() => {
+              setLoadedImages((prev) => {
+                const newLoaded = [...prev];
+                newLoaded[activeIndex] = true;
+                return newLoaded;
+              });
+            }}
             sizes={isFullscreen ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-            priority={activeIndex === 0}
+            priority={activeIndex === 0} // Only prioritize the first image
           />
         </div>
 
-        {/* Navigation arrows - larger on mobile */}
+        {/* Navigation arrows */}
         {images.length > 1 && (
           <>
             <Button
@@ -298,7 +314,7 @@ export function ProductImageGallery({
         )}
       </div>
 
-      {/* Thumbnail navigation - scrollable on mobile */}
+      {/* Thumbnail navigation */}
       {images.length > 1 && (
         <div className="flex gap-2 overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-x-visible md:pb-0">
           {images.map((image, index) => (
@@ -320,6 +336,13 @@ export function ProductImageGallery({
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 60px, 100px"
+                onLoad={() => {
+                  setLoadedImages((prev) => {
+                    const newLoaded = [...prev];
+                    newLoaded[index] = true;
+                    return newLoaded;
+                  });
+                }}
               />
             </button>
           ))}
