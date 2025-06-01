@@ -17,13 +17,14 @@ import { ProductImageGallery } from "@/components/product-image-gallery";
 import { MerchantContactButton } from "@/components/merchant-contact-button";
 import { Product } from "@/types/types";
 import { useCartStore } from "@/store/cart-store";
+import { formatPrice } from "@/lib/utils";
 
 interface ProductDetailsProps {
   product: Product;
 }
 
 export function ProductDetails({ product }: ProductDetailsProps) {
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState("m");
   const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -78,7 +79,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="flex items-center gap-4">
           {product.discount > 0 ? (
             <>
-              <span className="text-2xl font-bold">${product.price}</span>
+              <span className="text-2xl font-bold">
+                {formatPrice(product.price)}
+              </span>
               <span className="text-muted-foreground text-lg line-through">
                 ${product.price / (1 - product.discount / 100)}
               </span>
@@ -87,7 +90,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               </span>
             </>
           ) : (
-            <span className="text-2xl font-bold">${product.price}</span>
+            <span className="text-2xl font-bold">
+              {formatPrice(product.price)}
+            </span>
           )}
         </div>
 
@@ -99,11 +104,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="xs">XS</SelectItem>
-                <SelectItem value="s">S</SelectItem>
-                <SelectItem value="m">M</SelectItem>
-                <SelectItem value="l">L</SelectItem>
-                <SelectItem value="xl">XL</SelectItem>
+                {product.sizes.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {s.toUpperCase()}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -115,11 +120,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <SelectValue placeholder="Select color" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="black">Black</SelectItem>
-                <SelectItem value="white">White</SelectItem>
-                <SelectItem value="red">Red</SelectItem>
-                <SelectItem value="blue">Blue</SelectItem>
-                <SelectItem value="green">Green</SelectItem>
+                {product.colors.map((c) => (
+                  <SelectItem key={c} value={c}>
+                    {c.toUpperCase()}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -149,8 +154,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Button className="flex-1 rounded-full" onClick={handleAddToCart}>
+        <div className="flex flex-row gap-4">
+          <Button
+            className="flex-1 rounded-full hidden"
+            onClick={handleAddToCart}
+          >
             <ShoppingCart className="h-4 w-4 mr-2" />
             Add to Cart
           </Button>
@@ -164,12 +172,14 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="pt-2">
           <MerchantContactButton
             product={product}
+            size={selectedSize}
+            color={selectedColor}
             variant="secondary"
             className="w-full bg-green-600 hover:bg-green-700 text-white border-none"
           />
         </div>
 
-        <Tabs defaultValue="description" className="mt-8">
+        <Tabs defaultValue="description" className="mt-8 hidden">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="description">Description</TabsTrigger>
             <TabsTrigger value="details">Details</TabsTrigger>

@@ -1,21 +1,23 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useCartStore } from "@/store/cart-store";
-import { Menu, MoonIcon, Search, ShoppingCart, Sun, User } from "lucide-react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ShoppingCart, Menu, Search, User, Moon, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { MobileMenu } from "./mobile-menu";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { useCartStore } from "@/store/cart-store";
+
+import React from "react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { cartItems } = useCartStore();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -51,25 +53,12 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
+          {/* Logo - moved to left for brand recognition */}
+          <Link href="/" className="text-xl md:text-2xl font-bold">
+            NGO²
+          </Link>
 
-            <Link
-              href="/"
-              className="text-xl md:text-2xl font-bold ml-2 md:ml-0"
-            >
-              NGO²
-            </Link>
-          </div>
-
+          {/* Desktop navigation - unchanged */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -87,20 +76,27 @@ const Header = () => {
             ))}
           </nav>
 
+          {/* Mobile actions - optimized for right-hand use */}
           <div className="flex items-center space-x-1 md:space-x-4">
+            {/* Desktop-only actions */}
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="hidden md:inline-flex"
             >
-              {theme === "dark" ? <Sun /> : <MoonIcon />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
               <span className="sr-only">Toggle theme</span>
             </Button>
 
             <Button
               variant="ghost"
               size="icon"
-              className="hidden md:inline-flex"
+              className="hidden md:inline-flexd"
             >
               <Search className="h-5 w-5" />
               <span className="sr-only">Search</span>
@@ -109,13 +105,14 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="hidden md:inline-flex"
+              className="hidden md:inline-flexd"
             >
               <User className="h-5 w-5" />
               <span className="sr-only">Account</span>
             </Button>
 
-            <Link href="/cart">
+            {/* Cart - accessible for both mobile and desktop */}
+            <Link className="hidden" href="/cart">
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
@@ -126,6 +123,17 @@ const Header = () => {
                 <span className="sr-only">Cart</span>
               </Button>
             </Link>
+
+            {/* Mobile menu button - moved to the right for easier right-hand access */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hiddend hidden"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
           </div>
         </div>
       </div>

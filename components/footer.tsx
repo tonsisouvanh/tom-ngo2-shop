@@ -5,15 +5,15 @@ export function Footer() {
   return (
     <footer className="bg-muted/30">
       <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4d gap-6 md:gap-8">
+          <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold mb-3 md:mb-4">NGO²</h3>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground hidden text-sm">
               Discover the latest fashion trends and styles for every occasion.
             </p>
           </div>
 
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-3 md:mb-4">Shop</h3>
             <ul className="space-y-2">
               <li>
@@ -87,9 +87,9 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
-          <div>
+          <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold mb-3 md:mb-4">Connect</h3>
             <div className="flex space-x-4">
               <Link
@@ -114,10 +114,6 @@ export function Footer() {
                 <span className="sr-only">Twitter</span>
               </Link>
             </div>
-            <p className="mt-4 text-muted-foreground text-sm">
-              Subscribe to our newsletter for updates on new arrivals and
-              promotions.
-            </p>
           </div>
         </div>
 

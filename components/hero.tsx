@@ -8,39 +8,70 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 const heroSlides = [
+  // {
+  //   id: 1,
+  //   title: "Dump Life Style",
+  //   subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+  //   description:
+  //     "Not just a shirt, it's a statement. For those who live the 'dump life' but are far from broke",
+  //   image: "/assets/images/banner_a.jpg",
+  //   cta: "Shop Now",
+  //   ctaLink: "/products?category=summer",
+  //   theme: "dark",
+  // },
   {
     id: 1,
-    title: "Summer Collection 2024",
-    subtitle: "Discover the latest trends",
-    description:
-      "Embrace the season with our curated selection of summer essentials",
-    image:
-      "https://images.unsplash.com/flagged/photo-1570733117311-d990c3816c47?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Shop Summer",
+    title: "Dump Life Style",
+    subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+    description: "",
+    image: "/assets/images/banner_a.jpg",
+    cta: "Shop Now",
     ctaLink: "/products?category=summer",
-    theme: "light",
+    theme: "dark",
   },
   {
     id: 2,
-    title: "Sustainable Fashion",
-    subtitle: "Style with purpose",
-    description: "Eco-friendly materials meet contemporary design",
+    title: "Dump Life Style",
+    subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+    description: "",
     image:
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=3172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Explore Eco Line",
-    ctaLink: "/products?category=sustainable",
+      "https://res.cloudinary.com/devton/image/upload/v1748692164/ngo2/IMG-20250531-WA0009_clayfj.jpg",
+    cta: "Shop Now",
+    ctaLink: "/products?category=summer",
     theme: "dark",
   },
   {
     id: 3,
-    title: "Urban Streetwear",
-    subtitle: "Express your individuality",
-    description: "Bold designs for the modern trendsetter",
+    title: "Dump Life Style",
+    subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+    description: "",
     image:
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Shop Streetwear",
-    ctaLink: "/products?category=streetwear",
-    theme: "light",
+      "https://res.cloudinary.com/devton/image/upload/v1748692291/ngo2/IMG-20250531-WA0007_djfvqa.jpg",
+    cta: "Shop Now",
+    ctaLink: "/products?category=summer",
+    theme: "dark",
+  },
+  {
+    id: 4,
+    title: "Dump Life Style",
+    subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+    description: "",
+    image:
+      "https://res.cloudinary.com/devton/image/upload/v1748692253/ngo2/IMG-20250531-WA0047_rizv1p.jpg",
+    cta: "Shop Now",
+    ctaLink: "/products?category=summer",
+    theme: "dark",
+  },
+  {
+    id: 5,
+    title: "Dump Life Style",
+    subtitle: "Live the 'Dump Life' (and Look Good Doing It)",
+    description: "",
+    image:
+      "https://res.cloudinary.com/devton/image/upload/v1748692286/ngo2/IMG-20250531-WA0004_gup4jm.jpg",
+    cta: "Shop Now",
+    ctaLink: "/products?category=summer",
+    theme: "dark",
   },
 ];
 
@@ -76,7 +107,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen max-sm:h-[400px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -91,7 +122,7 @@ export function Hero() {
               src={heroSlides[currentSlide].image || "/placeholder.svg"}
               alt={heroSlides[currentSlide].title}
               fill
-              className="object-cover"
+              className="object-contain max-sm:object-cover"
               priority
               sizes="100vw"
             />
@@ -119,13 +150,13 @@ export function Hero() {
                         : "text-gray-900"
                     }
                   >
-                    <p className="text-sm md:text-base font-medium mb-2 tracking-wider uppercase opacity-80">
+                    <p className="text-sm md:text-base max-sm:text-xs font-medium mb-2 tracking-wider uppercase opacity-80">
                       {heroSlides[currentSlide].subtitle}
                     </p>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
                       {heroSlides[currentSlide].title}
                     </h1>
-                    <p className="text-lg md:text-xl mb-8 opacity-90 max-w-lg">
+                    <p className="text-lg md:text-xl mb-8 max-sm:text-sm opacity-90 max-w-lg">
                       {heroSlides[currentSlide].description}
                     </p>
 
@@ -133,7 +164,7 @@ export function Hero() {
                       <Button
                         asChild
                         size="lg"
-                        className="rounded-full px-8 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-300"
+                        className="rounded-full max-sm:hidden px-8 py-6 text-lg font-semibold bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-300"
                       >
                         <Link href={heroSlides[currentSlide].ctaLink}>
                           {/* {heroSlides[currentSlide].cta} */}
@@ -168,7 +199,7 @@ export function Hero() {
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 group"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all max-sm:hidden duration-300 group"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
@@ -176,7 +207,7 @@ export function Hero() {
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 group"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all max-sm:hidden duration-300 group"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
@@ -210,27 +241,3 @@ export function Hero() {
     </section>
   );
 }
-
-// import Link from "next/link"
-// import { Button } from "@/components/ui/button"
-
-// export function Hero() {
-//   return (
-//     <div className="relative w-full bg-gradient-to-r from-background to-muted">
-//       <div className="container mx-auto px-4 py-16 md:py-24 flex flex-col items-center text-center">
-//         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 tracking-tight">Elevate Your Style</h1>
-//         <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl">
-//           Discover our new collection of trendy and comfortable clothing for every occasion.
-//         </p>
-//         <div className="flex flex-col sm:flex-row gap-4">
-//           <Button asChild size="lg" className="rounded-full px-8">
-//             <Link href="/products">Shop Now</Link>
-//           </Button>
-//           <Button variant="outline" size="lg" asChild className="rounded-full px-8">
-//             <Link href="/categories">Browse Categories</Link>
-//           </Button>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }

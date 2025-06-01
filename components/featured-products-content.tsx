@@ -1,8 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ProductCard } from "@/components/product-card";
 import { Product } from "@/types/types";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@/components/product-card"), {
+  ssr: false,
+});
 
 type Props = {
   products: Product[];
@@ -27,12 +31,12 @@ export function FeaturedProductsContent({ products }: Props) {
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Featured Products
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg hidden text-muted-foreground max-w-2xl mx-auto">
           Handpicked favorites that define this season's must-have looks
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product, index) => (
           <motion.div
             key={product.id}

@@ -10,8 +10,12 @@ export const metadata = {
   description: "View detailed product information and add to your cart.",
 };
 
-export default async function ProductPage() {
-  const product = await getProductById("1");
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const product = await getProductById((await params).id);
 
   if (!product) {
     notFound();

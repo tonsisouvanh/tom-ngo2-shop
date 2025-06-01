@@ -1,17 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Slider } from "@/components/ui/slider"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const categories = [
   { id: "men", label: "Men" },
   { id: "women", label: "Women" },
   { id: "accessories", label: "Accessories" },
-]
+];
 
 const sizes = [
   { id: "xs", label: "XS" },
@@ -19,7 +24,7 @@ const sizes = [
   { id: "m", label: "M" },
   { id: "l", label: "L" },
   { id: "xl", label: "XL" },
-]
+];
 
 const colors = [
   { id: "black", label: "Black" },
@@ -27,10 +32,10 @@ const colors = [
   { id: "red", label: "Red" },
   { id: "blue", label: "Blue" },
   { id: "green", label: "Green" },
-]
+];
 
 export function ProductFilters() {
-  const [priceRange, setPriceRange] = useState([0, 200])
+  const [priceRange, setPriceRange] = useState([0, 200]);
 
   return (
     <div className="space-y-6">
@@ -41,10 +46,14 @@ export function ProductFilters() {
         </Button>
       </div>
 
-      <Accordion type="multiple" defaultValue={["price", "categories", "sizes", "colors"]} className="w-full">
-        <AccordionItem value="price">
+      <Accordion
+        type="multiple"
+        defaultValue={["price", "categories", "sizes", "colors"]}
+        className="w-full"
+      >
+        <AccordionItem value="price" className="">
           <AccordionTrigger>Price Range</AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="py-4">
             <div className="space-y-4">
               <Slider
                 defaultValue={[0, 200]}
@@ -67,7 +76,10 @@ export function ProductFilters() {
               {categories.map((category) => (
                 <div key={category.id} className="flex items-center space-x-2">
                   <Checkbox id={`category-${category.id}`} />
-                  <Label htmlFor={`category-${category.id}`} className="text-sm">
+                  <Label
+                    htmlFor={`category-${category.id}`}
+                    className="text-sm"
+                  >
                     {category.label}
                   </Label>
                 </div>
@@ -92,7 +104,7 @@ export function ProductFilters() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="colors">
+        <AccordionItem value="colors" className="hidden">
           <AccordionTrigger>Colors</AccordionTrigger>
           <AccordionContent>
             <div className="space-y-2">
@@ -109,5 +121,5 @@ export function ProductFilters() {
         </AccordionItem>
       </Accordion>
     </div>
-  )
+  );
 }

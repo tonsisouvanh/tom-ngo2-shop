@@ -6,9 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("lo-LA", {
+    // "lo-LA" for Lao, Laos
     style: "currency",
-    currency: "USD",
+    currency: "LAK", // Set currency to Lao Kip
   }).format(price);
 }
 

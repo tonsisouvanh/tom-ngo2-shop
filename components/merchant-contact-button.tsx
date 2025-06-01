@@ -6,6 +6,8 @@ import { Product } from "@/types/types";
 
 interface MerchantContactButtonProps {
   product?: Product;
+  size?: string;
+  color?: string;
   isFloating?: boolean;
   className?: string;
   variant?:
@@ -19,33 +21,65 @@ interface MerchantContactButtonProps {
 
 export function MerchantContactButton({
   product,
+  size,
+  color,
   isFloating = false,
   className = "",
   variant = "default",
 }: MerchantContactButtonProps) {
-  const handleContactMerchant = () => {
-    // Merchant's phone number
-    const phoneNumber = "2056373308";
+  // Helper function to format price in LAK
+  const formatLAKPrice = (price: number): string => {
+    return new Intl.NumberFormat("lo-LA", {
+      style: "currency",
+      currency: "LAK",
+      minimumFractionDigits: 0, // LAK doesn't typically use minor units
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
 
-    // Create the message text
-    let message = "Hello, I'm interested in your products.";
+  const handleContactMerchant = () => {
+    // Merchant's phone number (ensure it's in international format)
+    const phoneNumber = "8562055102460"; // Example: +856 20 5637 3308 for Laos
+
+    let message = "ສະບາຍດີ, ຂ້ອຍສົນໃຈໃນສິນຄ້າ."; // "Hello, I'm interested in your products." in Lao
 
     if (product) {
-      // Format the price with discount if applicable
-      const priceDisplay =
+      const originalPrice = product.price;
+      const discountedPrice =
         product.discount > 0
-          ? `$${product.price} (${product.discount}% OFF - Original: $${
-              product.price / (1 - product.discount / 100)
-            })`
-          : `$${product.price}`;
+          ? originalPrice * (1 - product.discount / 100)
+          : originalPrice;
 
-      message = `Hello, I'm interested in this product:\n\n*${product.name}*\n\nPrice: ${priceDisplay}\n\nProduct ID: ${product.id}\n\nCan you provide more information?`;
+      // Format prices in LAK
+      const formattedOriginalPrice = formatLAKPrice(originalPrice);
+      const formattedDiscountedPrice = formatLAKPrice(discountedPrice);
+
+      let priceDisplay = `ລາຄາ: *${formattedOriginalPrice}*`; // Price: *LAK190,000*
+
+      if (product.discount > 0) {
+        priceDisplay = `ລາຄາ: *${formattedDiscountedPrice}* (ຫຼຸດ ${product.discount}% ຈາກ ${formattedOriginalPrice})`; // Price: *LAK152,000* (Discount 20% from LAK190,000)
+      }
+
+      // Add more product details to the message
+      message =
+        `ສະບາຍດີ, ຂ້ອຍສົນໃຈສິນຄ້ານີ້:\n\n` +
+        `*${product.name}*\n` +
+        // `ລາຍລະອຽດ: ${product.description}\n` +
+        `${priceDisplay}\n` +
+        `ປະເພດ: ${product.category}\n` +
+        `ຂະໜາດ: ${size}\n` +
+        `ສີ: ${color}\n` +
+        // `ວັດສະດຸ: ${product.material}\n` +
+        // `ຜະລິດຢູ່: ${product.madeIn}\n` +
+        `\n` +
+        `ລະຫັດສິນຄ້າ: ${product.id}\n\n` +
+        `ສາມາດໃຫ້ຂໍ້ມູນເພີ່ມເຕີມໄດ້ບໍ່?`; // Can you provide more information?
     }
 
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
 
-    // Create the WhatsApp URL with the merchant's phone number
+    // Create the WhatsApp URL
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     // Open WhatsApp in a new tab

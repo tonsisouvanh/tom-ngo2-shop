@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ShareButton } from "@/components/share-button";
 import { Product } from "@/types/types";
+import { formatPrice } from "@/lib/utils";
 
 interface ProductShareCardProps {
   product: Product;
@@ -15,7 +16,7 @@ export function ProductShareCard({ product, onClose }: ProductShareCardProps) {
   const priceDisplay =
     product.discount > 0 ? (
       <div className="flex items-center gap-2">
-        <span className="font-bold">${product.price}</span>
+        <span className="font-bold">{formatPrice(product.price)}</span>
         <span className="text-muted-foreground text-sm line-through">
           ${product.price / (1 - product.discount / 100)}
         </span>
@@ -24,7 +25,7 @@ export function ProductShareCard({ product, onClose }: ProductShareCardProps) {
         </span>
       </div>
     ) : (
-      <span className="font-bold">${product.price}</span>
+      <span className="font-bold">{formatPrice(product.price)}</span>
     );
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -43,23 +43,23 @@ export function ProductImageGallery({
     setIsZoomed(false);
   };
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     setIsZoomed(false);
-  };
+  }, [images.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     setIsZoomed(false);
-  };
+  }, [images.length]);
 
   // Handle zoom functionality
-  const toggleZoom = () => {
+  const toggleZoom = useCallback(() => {
     setIsZoomed((prev) => !prev);
     if (isZoomed) {
       setZoomPosition({ x: 0, y: 0 });
     }
-  };
+  }, [isZoomed]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isZoomed || !imageContainerRef.current) return;
@@ -150,7 +150,7 @@ export function ProductImageGallery({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isFullscreen, isZoomed]);
+  }, [isFullscreen, isZoomed, prevImage, toggleZoom, nextImage]);
 
   // Preload images to improve performance
   useEffect(() => {

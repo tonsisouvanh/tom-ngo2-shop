@@ -1,9 +1,13 @@
 "use client";
 
+import { products } from "@/lib/data/products";
 import { motion } from "framer-motion";
-import { ProductCard } from "@/components/product-card";
 import { Sparkles } from "lucide-react";
-import { getNewArrivals, products } from "@/lib/data/products";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@/components/product-card"), {
+  ssr: false,
+});
 
 export function NewArrivals() {
   return (
@@ -25,13 +29,13 @@ export function NewArrivals() {
           <Sparkles className="h-8 w-8 text-primary mr-3" />
           <h2 className="text-3xl md:text-4xl font-bold">New Arrivals</h2>
         </div>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg hidden text-muted-foreground max-w-2xl mx-auto">
           Fresh styles just landed. Be among the first to discover our latest
           additions
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product, index) => (
           <motion.div
             key={product.id}

@@ -1,6 +1,9 @@
-import { ProductCard } from "@/components/product-card";
+"use client";
 import { Product } from "@/types/types";
-
+import dynamic from "next/dynamic";
+const ProductCard = dynamic(() => import("@/components/product-card"), {
+  ssr: false,
+});
 interface RelatedProductsProps {
   products: Product[];
 }

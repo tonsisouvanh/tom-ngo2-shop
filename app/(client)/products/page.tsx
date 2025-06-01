@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { getAllProducts } from "@/lib/data/products";
 import { ProductFilters } from "@/components/product-filters";
 import { ProductGrid } from "@/components/product-grid";
@@ -26,8 +31,9 @@ export default async function ProductsPage() {
               Filters
             </Button>
           </SheetTrigger>
+          <SheetTitle></SheetTitle>
           <SheetContent side="left" className="w-[300px] sm:w-[350px]">
-            <div className="py-4">
+            <div className="p-4">
               <ProductFilters />
             </div>
           </SheetContent>
