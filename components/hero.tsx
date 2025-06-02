@@ -8,21 +8,10 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 const heroSlides = [
-  // {
-  //   id: 1,
-  //   title: "Dumb Life Style",
-  //   subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
-  //   description:
-  //     "Not just a shirt, it's a statement. For those who live the 'dump life' but are far from broke",
-  //   image: "/assets/images/banner_a.jpg",
-  //   cta: "Shop Now",
-  //   ctaLink: "/products?category=summer",
-  //   theme: "dark",
-  // },
   {
     id: 1,
     title: "Dumb Life Style",
-    subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
+    subtitle: "Just another stupid brand (that gets you noticed)",
     description: "",
     image: "/assets/images/banner_a.jpg",
     cta: "Shop Now",
@@ -32,7 +21,7 @@ const heroSlides = [
   {
     id: 2,
     title: "Dumb Life Style",
-    subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
+    subtitle: "Just another stupid brand (that gets you noticed)",
     description: "",
     image:
       "https://res.cloudinary.com/devton/image/upload/v1748692164/ngo2/IMG-20250531-WA0009_clayfj.jpg",
@@ -43,7 +32,7 @@ const heroSlides = [
   {
     id: 3,
     title: "Dumb Life Style",
-    subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
+    subtitle: "Just another stupid brand (that gets you noticed)",
     description: "",
     image:
       "https://res.cloudinary.com/devton/image/upload/v1748692291/ngo2/IMG-20250531-WA0007_djfvqa.jpg",
@@ -54,7 +43,7 @@ const heroSlides = [
   {
     id: 4,
     title: "Dumb Life Style",
-    subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
+    subtitle: "Just another stupid brand (that gets you noticed)",
     description: "",
     image:
       "https://res.cloudinary.com/devton/image/upload/v1748692253/ngo2/IMG-20250531-WA0047_rizv1p.jpg",
@@ -65,7 +54,7 @@ const heroSlides = [
   {
     id: 5,
     title: "Dumb Life Style",
-    subtitle: "Live the 'Dumb Life' (and Look Good Doing It)",
+    subtitle: "Just another stupid brand (that gets you noticed)",
     description: "",
     image:
       "https://res.cloudinary.com/devton/image/upload/v1748692286/ngo2/IMG-20250531-WA0004_gup4jm.jpg",

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "NGO² | Unisex T-Shirt",
-  description: "We sell good and modern product",
+  description: "Just another stupid brand (that gets you noticed)",
   icons: {
     icon: ["/favicon.ico?v=4"],
     apple: ["/apple-touch-icon.png?v=4"],
@@ -25,22 +25,22 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "NGO² | Unisex T-Shirt",
-    description: "We sell good and modern product",
+    description: "Just another stupid brand (that gets you noticed)",
     url: `${process.env.NEXT_PUBLIC_DOMAIN}`,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/cover.jpg`,
+        url: `${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/banner_a.jpg`,
         width: 1200,
         height: 630,
-        alt: "Unitel It service",
+        alt: "NGO² | Unisex T-Shirt",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "NGO² | Unisex T-Shirt",
-    description: "We sell good and modern product",
-    images: [`${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/cover.jpg`],
+    description: "Just another stupid brand (that gets you noticed)",
+    images: [`${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/banner_a.jpg`],
   },
 };
 

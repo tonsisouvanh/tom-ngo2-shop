@@ -14,7 +14,7 @@ export function AboutBrands() {
   const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
 
   // Placeholder brand logos
-  const brands = ["Ngo2"];
+  const brands = ["NGO²"];
 
   return (
     <section className="py-16 md:py-24 overflow-hidden" ref={containerRef}>
