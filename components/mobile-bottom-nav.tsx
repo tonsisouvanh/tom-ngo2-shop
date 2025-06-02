@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { MobileMenu } from "./mobile-menu";
 import { useCartStore } from "@/store/cart-store";
+import { event as gaEvent } from "@/lib/gtag"; // Import your GA event function, aliased to avoid conflict if 'event' is used elsewhere
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
@@ -32,6 +33,16 @@ export function MobileBottomNav() {
     // { name: "Contact", href: "/contact", icon: Menu },
   ];
 
+  const handleNavLinkClick = (itemName: string, itemHref: string) => {
+    // Send a custom GA event
+    gaEvent({
+      action: "navigation_click", // Descriptive action name
+      category: "Navigation", // Category for grouping events
+      label: `Nav Link: ${itemName} (${itemHref})`, // Specific label with item name and href
+      // value: 1, // Optional: You can add a value if relevant
+    });
+  };
+
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-md border-t border-border/40">
@@ -39,6 +50,7 @@ export function MobileBottomNav() {
           {/* Navigation items */}
           {navItems.map((item) => (
             <Link
+              onClick={() => handleNavLinkClick(item.name, item.href)}
               key={item.name}
               href={item.href}
               className={cn(

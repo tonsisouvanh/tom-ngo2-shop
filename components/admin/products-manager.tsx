@@ -39,6 +39,7 @@ import {
   Package,
 } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import Image from "next/image";
 
 // Mock product data
 const mockProducts = [
@@ -253,7 +254,9 @@ export function ProductsManager() {
                 <TableRow key={product.id}>
                   <TableCell>
                     <div className="flex items-center space-x-3">
-                      <img
+                      <Image
+                        width={500}
+                        height={500}
                         src={product.image || "/placeholder.svg"}
                         alt={product.name}
                         className="w-10 h-10 rounded-md object-cover"

@@ -9,6 +9,7 @@ import { MobileMenu } from "./mobile-menu";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useCartStore } from "@/store/cart-store";
+import { event as gaEvent } from "@/lib/gtag"; // Import your GA event function, aliased to avoid conflict if 'event' is used elsewhere
 
 import React from "react";
 
@@ -42,6 +43,16 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavLinkClick = (itemName: string, itemHref: string) => {
+    // Send a custom GA event
+    gaEvent({
+      action: "navigation_click", // Descriptive action name
+      category: "Navigation", // Category for grouping events
+      label: `Nav Link: ${itemName} (${itemHref})`, // Specific label with item name and href
+      // value: 1, // Optional: You can add a value if relevant
+    });
+  };
+
   return (
     <header
       className={cn(
@@ -62,6 +73,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
+                onClick={() => handleNavLinkClick(item.name, item.href)}
                 key={item.name}
                 href={item.href}
                 className={cn(

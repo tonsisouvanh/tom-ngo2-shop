@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Upload, X, Edit, ImageIcon, type File } from "lucide-react";
+import Image from "next/image";
 
 interface ImageUploadProps {
   images: any[];
@@ -44,81 +45,87 @@ export function ImageUpload({
     setIsDragging(false);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
+  const handleFiles = useCallback(
+    async (files: File[]) => {
+      if (images.length + files.length > maxImages) {
+        // toast({
+        //   title: "Too many files",
+        //   description: `You can only upload up to ${maxImages} images`,
+        //   variant: "destructive",
+        // });
+        return;
+      }
 
-    const files = Array.from(e.dataTransfer.files);
-    handleFiles(files);
-  }, []);
+      setIsUploading(true);
+
+      try {
+        const newImages = await Promise.all(
+          files.map(async (file) => {
+            // Validate file type
+            if (!acceptedTypes.includes(file.type)) {
+              throw new Error(`${file.name} is not a supported file type`);
+            }
+
+            // Validate file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+              throw new Error(`${file.name} is too large. Maximum size is 5MB`);
+            }
+
+            // Create preview URL
+            const url = URL.createObjectURL(file);
+
+            // Simulate upload delay
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            return {
+              id: Date.now() + Math.random(),
+              filename: file.name,
+              originalName: file.name,
+              url,
+              thumbnailUrl: url,
+              size: file.size,
+              mimeType: file.type,
+              alt: "",
+              caption: "",
+              uploadedAt: new Date().toISOString(),
+              uploadedBy: "current-user",
+            };
+          })
+        );
+
+        onImagesChange([...images, ...newImages]);
+
+        // toast({
+        //   title: "Images uploaded",
+        //   description: `${newImages.length} image(s) uploaded successfully`,
+        // })
+      } catch (error) {
+        // toast({
+        //   title: "Upload failed",
+        //   description: error instanceof Error ? error.message : "Failed to upload images",
+        //   variant: "destructive",
+        // })
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [acceptedTypes, images, maxImages, onImagesChange]
+  );
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
+
+      const files = Array.from(e.dataTransfer.files);
+      handleFiles(files);
+    },
+    [handleFiles]
+  );
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     handleFiles(files);
-  };
-
-  const handleFiles = async (files: File[]) => {
-    if (images.length + files.length > maxImages) {
-      // toast({
-      //   title: "Too many files",
-      //   description: `You can only upload up to ${maxImages} images`,
-      //   variant: "destructive",
-      // });
-      return;
-    }
-
-    setIsUploading(true);
-
-    try {
-      const newImages = await Promise.all(
-        files.map(async (file) => {
-          // Validate file type
-          if (!acceptedTypes.includes(file.type)) {
-            throw new Error(`${file.name} is not a supported file type`);
-          }
-
-          // Validate file size (5MB limit)
-          if (file.size > 5 * 1024 * 1024) {
-            throw new Error(`${file.name} is too large. Maximum size is 5MB`);
-          }
-
-          // Create preview URL
-          const url = URL.createObjectURL(file);
-
-          // Simulate upload delay
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-
-          return {
-            id: Date.now() + Math.random(),
-            filename: file.name,
-            originalName: file.name,
-            url,
-            thumbnailUrl: url,
-            size: file.size,
-            mimeType: file.type,
-            alt: "",
-            caption: "",
-            uploadedAt: new Date().toISOString(),
-            uploadedBy: "current-user",
-          };
-        })
-      );
-
-      onImagesChange([...images, ...newImages]);
-
-      // toast({
-      //   title: "Images uploaded",
-      //   description: `${newImages.length} image(s) uploaded successfully`,
-      // })
-    } catch (error) {
-      // toast({
-      //   title: "Upload failed",
-      //   description: error instanceof Error ? error.message : "Failed to upload images",
-      //   variant: "destructive",
-      // })
-    } finally {
-      setIsUploading(false);
-    }
   };
 
   const removeImage = (imageId: string) => {
@@ -211,7 +218,9 @@ export function ImageUpload({
               >
                 <Card className="overflow-hidden">
                   <div className="aspect-square relative">
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt || image.filename}
                       className="w-full h-full object-cover"
@@ -276,7 +285,9 @@ export function ImageUpload({
 
             <div className="space-y-4">
               <div className="aspect-video relative rounded-lg overflow-hidden bg-muted">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src={editingImage.url || "/placeholder.svg"}
                   alt={editingImage.alt || editingImage.filename}
                   className="w-full h-full object-contain"

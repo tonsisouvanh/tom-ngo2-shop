@@ -6,6 +6,7 @@ import { X, Sun, Moon, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { event as gaEvent } from "@/lib/gtag"; // Import your GA event function, aliased to avoid conflict if 'event' is used elsewhere
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,7 +17,15 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
-
+  const handleNavLinkClick = (itemName: string, itemHref: string) => {
+    // Send a custom GA event
+    gaEvent({
+      action: "navigation_click", // Descriptive action name
+      category: "Navigation", // Category for grouping events
+      label: `Nav Link: ${itemName} (${itemHref})`, // Specific label with item name and href
+      // value: 1, // Optional: You can add a value if relevant
+    });
+  };
   if (!isOpen) return null;
 
   return (
@@ -66,7 +75,10 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
                   ? "text-primary bg-primary/5 border-primary/20"
                   : "text-muted-foreground"
               )}
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                handleNavLinkClick(item.name, item.href);
+              }}
             >
               {item.name}
             </Link>

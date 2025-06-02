@@ -13,7 +13,7 @@ import { cn, formatPrice } from "@/lib/utils";
 import { Product } from "@/types/types";
 import { useCartStore } from "@/store/cart-store";
 import { toast } from "sonner";
-
+import { event as gaEvent } from "@/lib/gtag";
 interface ProductCardProps {
   product: Product;
 }
@@ -81,6 +81,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
   };
 
+  const handleProductClick = (productId: string, productName: string) => {
+    // Send a custom GA event when the product link is clicked
+    gaEvent({
+      action: "product_click", // Action: 'product_click' for clarity
+      category: "Product Engagement", // Category: 'Product Engagement' for grouping
+      label: `Product: ${productName} (ID: ${productId})`, // Label: specific product name and ID
+      value: 1, // Optional: You could assign a value, e.g., for products with a certain price range
+    });
+    console.log(
+      `GA Event: Product clicked - ${productName} (ID: ${productId})`
+    );
+  };
+
   return (
     <Card
       className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-md dark:hover:shadow-primary/5 border-border/40"
@@ -88,7 +101,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative aspect-square group">
-        <Link href={`/products/${product.id}`} className="block w-full h-full">
+        <Link
+          href={`/products/${product.id}`}
+          className="block w-full h-full"
+          onClick={() => handleProductClick(product.id, product.name)}
+        >
           <div
             className="relative w-full h-full overflow-hidden"
             onTouchStart={handleTouchStart}
@@ -169,7 +186,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       <CardContent className="flex-grow">
-        <Link href={`/products/${product.id}`}>
+        <Link
+          href={`/products/${product.id}`}
+          onClick={() => handleProductClick(product.id, product.name)}
+        >
           <h3 className="font-medium hover:text-primary transition-colors line-clamp-1">
             {product.name}
           </h3>
