@@ -4,7 +4,7 @@ import { Product } from "@/types/types";
 export const products: Product[] = [
   {
     id: "1",
-    name: "Unisex White",
+    name: "NGONGO White",
     description:
       "A comfortable and versatile cotton t-shirt that's perfect for everyday wear. Features a relaxed fit and soft fabric.",
     price: 199000,
@@ -25,7 +25,7 @@ export const products: Product[] = [
   },
   {
     id: "2",
-    name: "Unisex Black",
+    name: "NGONGO Black",
     description:
       "A comfortable and versatile cotton t-shirt that's perfect for everyday wear. Features a relaxed fit and soft fabric.",
     price: 199000,
