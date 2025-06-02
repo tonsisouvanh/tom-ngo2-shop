@@ -8,7 +8,7 @@ export const products: Product[] = [
     description:
       "A comfortable and versatile cotton t-shirt that's perfect for everyday wear. Features a relaxed fit and soft fabric.",
     price: 199000,
-    category: "men/women",
+    category: "Unisex",
     images: [
       "https://res.cloudinary.com/devton/image/upload/v1748692166/ngo2/IMG-20250531-WA0017_yukuvz.jpg",
       "https://res.cloudinary.com/devton/image/upload/v1748692181/ngo2/IMG-20250531-WA0029_hndgkx.jpg",
@@ -29,7 +29,7 @@ export const products: Product[] = [
     description:
       "A comfortable and versatile cotton t-shirt that's perfect for everyday wear. Features a relaxed fit and soft fabric.",
     price: 199000,
-    category: "men/women",
+    category: "Unisex",
     images: [
       "https://res.cloudinary.com/devton/image/upload/v1748692269/ngo2/IMG-20250531-WA0059_f4i19q.jpg",
       "https://res.cloudinary.com/devton/image/upload/v1748692168/ngo2/IMG-20250531-WA0018_zejk1z.jpg",

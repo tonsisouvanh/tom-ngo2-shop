@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function AboutHero() {
   return (
@@ -22,11 +22,21 @@ export function AboutHero() {
           <Button asChild size="lg" className="rounded-full px-8">
             <Link href="/products">Explore Collection</Link>
           </Button>
-          <Button variant="outline" size="lg" asChild className="rounded-full px-8">
-            <Link href="/contact">Get in Touch</Link>
+          <Button
+            variant="outline"
+            size="lg"
+            asChild
+            className="rounded-full px-8"
+          >
+            <a
+              target="_blank"
+              href="https://web.facebook.com/profile.php?id=61577003547664"
+            >
+              Get in Touch
+            </a>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

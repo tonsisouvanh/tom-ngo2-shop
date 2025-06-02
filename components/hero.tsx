@@ -139,13 +139,13 @@ export function Hero() {
                         : "text-gray-900"
                     }
                   >
-                    <p className="text-sm md:text-base max-sm:text-xs font-medium mb-2 tracking-wider uppercase opacity-80">
+                    <p className="text-sm md:text-base max-sm:text-xs font-medium mb-2 tracking-wider opacity-80">
                       {heroSlides[currentSlide].subtitle}
                     </p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
+                    <h1 className="text-lg md:text-xl lg:text-7xld font-bold mb-4 leading-tight">
                       {heroSlides[currentSlide].title}
                     </h1>
-                    <p className="text-lg md:text-xl mb-8 max-sm:text-sm opacity-90 max-w-lg">
+                    <p className="text-sm md:text-lg mb-8 max-sm:text-sm opacity-90 max-w-lg">
                       {heroSlides[currentSlide].description}
                     </p>
 
